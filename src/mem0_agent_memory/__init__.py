@@ -2,7 +2,7 @@
 
 from .server import run_server
 
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 __author__ = "Arunkumar Selvam"
 __email__ = "aruninfy123@gmail.com"
 
