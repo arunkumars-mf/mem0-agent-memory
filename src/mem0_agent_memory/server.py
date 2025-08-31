@@ -144,7 +144,11 @@ Examples:
 - Store with metadata: {"content": "API endpoint changed", "metadata": {"type": "technical", "priority": "high"}}
 - Auto-detect user: {"content": "Remember this pattern"} (uses system username)
 
-Use for: Storing code patterns, user preferences, project details, technical knowledge."""
+Use for: Storing code patterns, user preferences, project details, technical knowledge.
+
+Best practices: Include relevant metadata for better searchability and organization.
+
+Returns: Success message with memory ID for future reference."""
 )
 async def store_memory(
     content: str,
@@ -180,7 +184,20 @@ Examples:
 - Auto-detect user: {"query": "my project status"} 
 - Limit results: {"query": "API endpoints", "limit": 3}
 
-Use for: Finding relevant code, recalling user preferences, retrieving project context."""
+Use for: Finding relevant code, recalling user preferences, retrieving project context.
+
+Parameters:
+- query: Natural language search terms
+- limit (1-50, default: 10): Number of results to return
+- page (default: 1): For pagination through large result sets
+
+Returns: Memories with relevance scores > 0.7, sorted by relevance (highest first).
+Score meaning: 0.7-0.8 (relevant), 0.8-0.9 (highly relevant), 0.9+ (exact match).
+
+Use cases:
+- Topic search: Find memories about specific subjects
+- Context retrieval: Get relevant background information
+- Pattern discovery: Find similar solutions or approaches"""
 )
 async def search_memories(
     query: str,
@@ -246,14 +263,22 @@ async def search_memories(
 OPTIONAL: 'user_id' OR 'agent_id' (if neither provided, auto-detects current user)
 OPTIONAL: 'page', 'page_size' - pagination controls (default: page_size=25)
 
-Returns: All memories belonging to the specified user/agent
+Parameters:
+- page (default: 1): Page number for pagination
+- page_size (1-100, default: 25): Use 10-25 for quick browsing, 50+ for comprehensive view
+
+Returns: All memories belonging to the specified user/agent, sorted by creation date (newest first).
+Includes memory ID, content preview, metadata, and timestamps.
+
+Use cases:
+- Memory management: Browse and organize stored memories
+- Knowledge overview: Get complete picture of stored information
+- Cleanup: Identify old or duplicate memories for removal
 
 Examples:
 - List user memories: {"user_id": "john"}
 - Auto-detect user: {} (empty - uses system username)
-- With pagination: {"page": 2, "page_size": 10}
-
-Use for: Browsing all stored memories, memory management, getting overview of stored knowledge."""
+- With pagination: {"page": 2, "page_size": 10}"""
 )
 async def list_memories(
     user_id: Optional[str] = None,
@@ -309,7 +334,12 @@ async def list_memories(
 
 REQUIRED: 'memory_id' - the UUID of the memory to retrieve
 
-Returns: Complete memory details including content, metadata, timestamps, scores
+Returns: Complete memory details including content, metadata, timestamps, and user/agent info.
+
+Use cases:
+- Memory inspection: Get full details of a specific memory
+- Reference lookup: Retrieve memory using ID from search results  
+- Debugging: Examine memory structure and metadata
 
 Examples:
 - Get memory: {"memory_id": "cafdf73c-f8c7-4729-b840-e88ce7d8a67c"}
@@ -331,10 +361,15 @@ REQUIRED: 'memory_id' - the UUID of the memory to delete
 
 ⚠️  WARNING: This permanently removes the memory and cannot be undone.
 
-Examples:
-- Delete memory: {"memory_id": "cafdf73c-f8c7-4729-b840-e88ce7d8a67c"}
+Returns: Confirmation message of successful deletion.
 
-Use for: Removing outdated information, cleaning up incorrect memories, memory management."""
+Use cases:
+- Cleanup: Remove outdated or incorrect memories
+- Privacy: Delete sensitive information
+- Management: Remove duplicate or unnecessary memories
+
+Examples:
+- Delete memory: {"memory_id": "cafdf73c-f8c7-4729-b840-e88ce7d8a67c"}"""
 )
 async def delete_memory(memory_id: str) -> str:
     """Delete memory by ID."""
@@ -349,12 +384,16 @@ async def delete_memory(memory_id: str) -> str:
 
 REQUIRED: 'memory_id' - the UUID of the memory to get history for
 
-Returns: Chronological list of changes, updates, and modifications to the memory
+Returns: Chronological list of all changes made to the memory including timestamps,
+previous versions, and modification details.
+
+Use cases:
+- Audit trail: Track how memory content has evolved
+- Debugging: Understand when and how memory was modified
+- Recovery: See previous versions of memory content
 
 Examples:
-- Get history: {"memory_id": "cafdf73c-f8c7-4729-b840-e88ce7d8a67c"}
-
-Use for: Tracking memory evolution, debugging memory changes, audit trails."""
+- Get history: {"memory_id": "cafdf73c-f8c7-4729-b840-e88ce7d8a67c"}"""
 )
 async def get_memory_history(memory_id: str) -> str:
     """Get memory history by ID."""
@@ -378,7 +417,18 @@ Examples:
 - Last 3 days: {"days": 3, "limit": 5}
 - Auto-detect user: {} (uses defaults)
 
-Use for: Session continuity, understanding recent context, catching up on latest updates."""
+Use for: Session continuity, understanding recent context, catching up on latest updates.
+
+Parameters:
+- days (1-30, default: 7): Time window for recent memories  
+- limit (1-50, default: 10): Use 3-5 for quick context, 10+ for comprehensive review
+
+Returns: Memories sorted by creation/update date (newest first) with relevance scores > 0.7.
+
+Use cases:
+- Starting conversations: Get context from recent work
+- Session continuity: Understand what happened recently  
+- Progress tracking: Review latest developments"""
 )
 async def get_recent_memory(
     days: int = 7,

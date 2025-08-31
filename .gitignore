@@ -47,7 +47,6 @@ Thumbs.db
 
 # Memory storage
 *.faiss
-mem0_*
 .mem0/
 
 # Logs
