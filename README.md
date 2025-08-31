@@ -10,6 +10,7 @@ MCP server for Mem0 agent memory management with multi-backend support.
 ## Features
 
 - **Multi-backend**: FAISS (local), OpenSearch (AWS), Mem0 Platform (cloud)
+- **AWS Bedrock integration**: Uses Amazon Titan embeddings and Claude 3.5 Haiku for processing
 - **Auto user detection**: Uses system username when no user_id provided
 - **Relevance filtering**: Returns memories with score > 0.7
 - **Complete memory operations**: store, search, list, get, delete, history
@@ -35,6 +36,20 @@ python -m mem0_agent_memory
 ```
 
 ## Configuration
+
+### AWS Configuration
+
+For AWS Bedrock integration (used by default), ensure AWS credentials are configured:
+
+```bash
+# Option 1: AWS CLI configuration
+aws configure
+
+# Option 2: Environment variables
+export AWS_ACCESS_KEY_ID="your-access-key"
+export AWS_SECRET_ACCESS_KEY="your-secret-key"
+export AWS_REGION="us-west-2"
+```
 
 ### Environment Variables
 
