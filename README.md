@@ -114,6 +114,8 @@ Add to your KIRO MCP configuration:
 }
 ```
 
+**Agent Steering:** Use the content from [`docs/KIRO_AGENT_STEERING.md`](docs/KIRO_AGENT_STEERING.md) as your agent steering document to enable memory-first development workflows.
+
 ## Tools
 
 - `store_memory(content, user_id?, agent_id?, metadata?)` - Store memory with metadata
@@ -127,59 +129,82 @@ Add to your KIRO MCP configuration:
 ## Usage Examples
 
 ### Store Memory
+
+**Auto-detect user:**
 ```json
-// Auto-detect user
 {"content": "User prefers React over Vue"}
+```
 
-// With metadata
+**With metadata:**
+```json
 {"content": "API endpoint changed", "metadata": {"type": "technical", "priority": "high"}}
+```
 
-// Specific user
+**Specific user:**
+```json
 {"content": "Project deadline is next Friday", "user_id": "john"}
 ```
 
 ### Search Memories
+
+**Basic search:**
 ```json
-// Basic search
 {"query": "React preferences"}
+```
 
-// With pagination
+**With pagination:**
+```json
 {"query": "API endpoints", "limit": 5, "page": 2}
+```
 
-// Specific user
+**Specific user:**
+```json
 {"query": "project status", "user_id": "john"}
 ```
 
 ### List Memories
-```json
-// Auto-detect user with pagination
-{"page": 1, "page_size": 10}
 
-// Specific user
+**Auto-detect user with pagination:**
+```json
+{"page": 1, "page_size": 10}
+```
+
+**Specific user:**
+```json
 {"user_id": "john", "page": 2, "page_size": 25}
 ```
 
 ### Get Recent Memories
+
+**Last week (default):**
 ```json
-// Last week (default)
 {}
+```
 
-// Last 3 days, limit 5
+**Last 3 days, limit 5:**
+```json
 {"days": 3, "limit": 5}
+```
 
-// Specific user
+**Specific user:**
+```json
 {"days": 7, "user_id": "john"}
 ```
 
 ### Memory Management
+
+**Get specific memory:**
 ```json
-// Get specific memory
 {"memory_id": "cafdf73c-f8c7-4729-b840-e88ce7d8a67c"}
+```
 
-// Get memory history
+**Get memory history:**
+```json
 {"memory_id": "cafdf73c-f8c7-4729-b840-e88ce7d8a67c"}
+```
 
-// Delete memory (permanent)
+**Delete memory (permanent):**
+```json
 {"memory_id": "cafdf73c-f8c7-4729-b840-e88ce7d8a67c"}
 ```
 
@@ -204,10 +229,6 @@ Search results automatically filtered to return only memories with relevance sco
 - Automatic fallback to `/tmp` if FAISS path is not writable
 - Clear error messages for missing dependencies
 - Graceful handling of network issues and invalid parameters
-
-## KIRO Agent Steering
-
-For KIRO users, use the content from [`docs/KIRO_AGENT_STEERING.md`](docs/KIRO_AGENT_STEERING.md) as your agent steering document to enable memory-first development workflows.
 
 ## Contributing
 
