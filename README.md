@@ -205,6 +205,10 @@ Search results automatically filtered to return only memories with relevance sco
 - Clear error messages for missing dependencies
 - Graceful handling of network issues and invalid parameters
 
+## KIRO Agent Steering
+
+For KIRO users, use the content from [`docs/KIRO_AGENT_STEERING.md`](docs/KIRO_AGENT_STEERING.md) as your agent steering document to enable memory-first development workflows.
+
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
