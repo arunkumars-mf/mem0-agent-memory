@@ -483,6 +483,36 @@ async def get_recent_memory(
     except Exception as e:
         return f"Error getting recent memories: {str(e)}"
 
+@mcp.tool(
+    description="""Get memory-first development guidance for AI agents.
+
+Returns: Comprehensive memory-first development workflows, protocols, and best practices 
+for using memory tools effectively in AI agent systems.
+
+Use cases:
+- Agent configuration: Use this content for agent steering/system prompts
+- Workflow guidance: Understand memory-first development principles  
+- Best practices: Learn proper memory management protocols
+- Multi-agent systems: Apply consistent memory patterns across agents
+
+For KIRO: Use this content as your agent steering document.
+For other agents: Incorporate these principles into your system prompts."""
+)
+async def get_memory_guidance() -> str:
+    """Get memory-first development guidance for AI agents."""
+    try:
+        import os
+        # Get the path to the steering document
+        current_dir = os.path.dirname(os.path.abspath(__file__))
+        project_root = os.path.dirname(os.path.dirname(current_dir))
+        steering_path = os.path.join(project_root, "docs", "KIRO_AGENT_STEERING.md")
+        
+        with open(steering_path, 'r', encoding='utf-8') as f:
+            return f.read()
+        
+    except Exception as e:
+        return f"Error reading agent guidance: {str(e)}"
+
 def run_server():
     """Run the MCP server."""
     mcp.run()
