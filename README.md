@@ -239,12 +239,12 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 If you use this software in your research or project, please cite it as:
 
 ```bibtex
-@software{selvam_mem0_agent_memory_2024,
+@software{selvam_mem0_agent_memory_2025,
   author = {Selvam, Arunkumar},
   title = {Mem0 Agent Memory - MCP Server},
   url = {https://github.com/arunkumars-mf/mem0-agent-memory},
   version = {1.0.0},
-  year = {2024}
+  year = {2025}
 }
 ```
 
