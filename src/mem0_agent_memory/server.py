@@ -501,15 +501,9 @@ For other agents: Incorporate these principles into your system prompts."""
 async def get_memory_guidance() -> str:
     """Get memory-first development guidance for AI agents."""
     try:
-        import os
-        # Get the path to the steering document
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        project_root = os.path.dirname(os.path.dirname(current_dir))
-        steering_path = os.path.join(project_root, "docs", "KIRO_AGENT_STEERING.md")
-        
-        with open(steering_path, 'r', encoding='utf-8') as f:
-            return f.read()
-        
+        from importlib import resources
+        pkg_resources = resources.files("mem0_agent_memory")
+        return pkg_resources.joinpath("docs", "AGENT_GUIDANCE.md").read_text(encoding="utf-8")
     except Exception as e:
         return f"Error reading agent guidance: {str(e)}"
 
