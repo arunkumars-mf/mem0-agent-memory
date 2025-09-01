@@ -1,7 +1,7 @@
 # Mem0 Agent Memory
 
 [![PyPI version](https://img.shields.io/pypi/v/mem0-agent-memory.svg)](https://pypi.org/project/mem0-agent-memory/)
-[![PyPI Downloads](https://static.pepy.tech/personalized-badge/mem0-agent-memory?period=total&units=INTERNATIONAL_SYSTEM&left_color=BLACK&right_color=GREEN&left_text=downloads)](https://pepy.tech/projects/mem0-agent-memory)
+[![PyPI Downloads](https://img.shields.io/pypi/dm/mem0-agent-memory.svg?label=PyPI%20downloads)](https://pypi.org/project/mem0-agent-memory/)
 [![Python versions](https://img.shields.io/pypi/pyversions/mem0-agent-memory.svg)](https://pypi.org/project/mem0-agent-memory/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
