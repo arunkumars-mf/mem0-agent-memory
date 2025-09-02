@@ -26,7 +26,7 @@ class Mem0ServiceClient:
         "llm": {
             "provider": "aws_bedrock",
             "config": {
-                "model": "anthropic.claude-3-5-haiku-20241022-v1:0",
+                "model": "us.anthropic.claude-3-5-haiku-20241022-v1:0",
                 "temperature": 0.1,
                 "max_tokens": 2000,
             },
