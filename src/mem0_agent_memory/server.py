@@ -93,8 +93,9 @@ class Mem0ServiceClient:
         try:
             os.makedirs(faiss_path, exist_ok=True)
         except (OSError, PermissionError):
-            # Fallback to /tmp if the specified path is not writable
-            faiss_path = "/tmp/mem0_agent"
+            # Cross-platform fallback to temp directory
+            import tempfile
+            faiss_path = os.path.join(tempfile.gettempdir(), "mem0_agent")
             os.makedirs(faiss_path, exist_ok=True)
         
         # Ensure the path ends with the index filename

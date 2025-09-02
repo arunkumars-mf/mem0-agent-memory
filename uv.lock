@@ -972,7 +972,7 @@ wheels = [
 
 [[package]]
 name = "mem0-agent-memory"
-version = "1.0.4"
+version = "1.0.6"
 source = { editable = "." }
 dependencies = [
     { name = "boto3" },
